@@ -52,7 +52,7 @@ function TaskCard({ task }: { task: TaskCard }) {
                 className="block group cursor-pointer"
                 aria-label={`View ${task.title} task details`}
             >
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/50 to-black border border-purple-500/20 p-6 transition-all hover:border-purple-500/40">
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-700/50 to-black border border-purple-500/20 p-6 transition-all hover:border-purple-500/40">
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative z-10">
                         <div className="flex items-center justify-between mb-4">

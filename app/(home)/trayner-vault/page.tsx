@@ -1,6 +1,7 @@
 import { TrainingHero } from '@/components/trayner-vault/Hero'
 import { TrainingCategories } from '@/components/trayner-vault/Categories'
 import { FeaturedTasks } from '@/components/trayner-vault/FeaturedTasks'
+import { RLHFBanner } from '@/components/trayner-vault/RLHFBanner'
 
 export default function TrainingPage() {
     return (
@@ -8,6 +9,7 @@ export default function TrainingPage() {
             <TrainingHero />
             <TrainingCategories />
             <FeaturedTasks />
+            <RLHFBanner />
         </main>
     )
 }

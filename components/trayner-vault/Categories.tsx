@@ -21,19 +21,19 @@ function TrainingCategoryCard({
 }: TrainingCategoryCardProps) {
     const themes = {
         gold: {
-            background: 'from-yellow-900/50',
-            border: 'border-yellow-500/20',
-            hoverBorder: 'hover:border-yellow-500/40',
+            background: 'from-yellow-600/50',
+            border: 'border-yellow-400/30',
+            hoverBorder: 'hover:border-yellow-400/50',
             gradient: 'from-yellow-600/10',
-            iconBg: 'bg-yellow-500/20',
+            iconBg: 'bg-yellow-400/20',
             iconColor: 'text-yellow-400',
         },
         purple: {
-            background: 'from-purple-900/50',
-            border: 'border-purple-500/20',
-            hoverBorder: 'hover:border-purple-500/40',
+            background: 'from-purple-600/50',
+            border: 'border-purple-400/30',
+            hoverBorder: 'hover:border-purple-400/50',
             gradient: 'from-purple-600/10',
-            iconBg: 'bg-purple-500/20',
+            iconBg: 'bg-purple-400/20',
             iconColor: 'text-purple-400',
         },
     }
@@ -43,7 +43,7 @@ function TrainingCategoryCard({
     return (
         <Link
             href={href}
-            className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${theme.background} to-black border ${theme.border} p-6 transition-all ${theme.hoverBorder}`}
+            className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${theme.background} to-black border ${theme.border} p-6 transition-all ${theme.hoverBorder}`}
         >
             <div
                 className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}
