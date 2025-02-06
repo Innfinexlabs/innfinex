@@ -15,7 +15,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
-
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
     DropdownMenu,
@@ -37,6 +37,49 @@ import {
 } from '@/components/ui/table'
 import { MY_TASKS } from '@/content/taskList'
 import { MyTask } from '@/types'
+import { UploadForm } from '@/components/dashboard/my-tasks/UploadForm'
+
+function ActionsCell({ task }: { task: MyTask }) {
+    const router = useRouter()
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
+
+    return (
+        <>
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                        <span className="sr-only">Open menu</span>
+                        <MoreHorizontal className="w-4 h-4" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuItem
+                        onClick={() => navigator.clipboard.writeText(task.id)}
+                    >
+                        Copy task ID
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => setIsUploadModalOpen(true)}>
+                        Upload json file
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => router.push(`/task/${task.slug}`)}
+                    >
+                        View task
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+
+            <UploadForm
+                isOpen={isUploadModalOpen}
+                onOpenChange={setIsUploadModalOpen}
+                taskId={task.id}
+            />
+        </>
+    )
+}
 
 const columns: ColumnDef<MyTask>[] = [
     {
@@ -156,31 +199,7 @@ const columns: ColumnDef<MyTask>[] = [
     {
         id: 'actions',
         enableHiding: false,
-        cell: ({ row }) => {
-            const task = row.original
-
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(task.id)}
-                        >
-                            Copy task ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View task</DropdownMenuItem>
-                        <DropdownMenuItem>View task details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
+        cell: ({ row }) => <ActionsCell task={row.original} />,
     },
 ]
 
