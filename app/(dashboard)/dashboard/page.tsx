@@ -15,15 +15,7 @@ import {
     TableRow,
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
-
-interface Task {
-    _id: string
-    title: string
-    userEmail: string
-    userName: string
-    completedAt: string
-    points: number
-}
+import { Task } from '@/types'
 
 export default function DashboardPage() {
     const [tasks, setTasks] = useState<Task[]>([])
@@ -104,17 +96,19 @@ export default function DashboardPage() {
                             </TableHeader>
                             <TableBody>
                                 {tasks.map((task) => (
-                                    <TableRow key={task._id}>
+                                    <TableRow key={task.id}>
                                         <TableCell className="font-medium">
                                             {task.title}
                                         </TableCell>
-                                        <TableCell>{task.userName}</TableCell>
+                                        <TableCell>{task.organizer.name}</TableCell>
                                         <TableCell>
-                                            {new Date(task.completedAt).toLocaleString()}
+                                            {new Date(
+                                                task.timeline[0].date
+                                            ).toLocaleString()}
                                         </TableCell>
                                         <TableCell>
                                             <Badge variant="secondary">
-                                                {task.points}
+                                                {task.prize}
                                             </Badge>
                                         </TableCell>
                                     </TableRow>
